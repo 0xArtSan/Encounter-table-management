@@ -5,8 +5,8 @@ from . import views
 app_name = "character"
 
 urlpatterns = [
-    path("", views.save, name="save"),
-    path("load", views.load, name="load")
+    path("save", views.save, name="save"),
+    path("", views.load, name="load")
 ]
 
 

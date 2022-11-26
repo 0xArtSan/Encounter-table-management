@@ -8,12 +8,14 @@
 {% block main %}
 
     <ul>
-        {% for item in characters %}
+        {% for character in characters %}
 
-            <li>{{ item }}</li>
+            <li>{{ character }}</li>
 
         {% empty %}
+
             <li>No Players/Playable Characters</li>
+            
         {% endfor %}
     </ul>
     
