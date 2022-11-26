@@ -7,6 +7,14 @@
 
 {% block main %}
 
-    <p>{{ name }} loaded!!!!</p>
+    <ul>
+        {% for item in characters %}
 
+            <li>{{ item }}</li>
+
+        {% empty %}
+            <li>No Players/Playable Characters</li>
+        {% endfor %}
+    </ul>
+    
 {% endblock %}
