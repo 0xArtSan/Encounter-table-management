@@ -6,7 +6,8 @@ app_name = "character"
 
 urlpatterns = [
     path("save", views.save, name="save"),
-    path("", views.load, name="load")
+    path("", views.index, name="load"),
+    path("load/<str:charname>", views.load, name="loadchar")
 ]
 
 
