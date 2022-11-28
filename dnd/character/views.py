@@ -1,38 +1,30 @@
+from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django import forms
 from django.urls import reverse
+from .models import Character
+from django.forms import ModelForm
 
-class NewCharacter(forms.Form):
-        charname = forms.CharField(label="Character Name")
-        # playername = forms.CharField(label="Player Name")
-        # race = forms.CharField(label="Race")
-        # charclass = forms.CharField(label="Class")
-        # level = forms.IntegerField(label="Level", max_value=20)
-        # ca = forms.IntegerField(label="Class Armor")
-        # hp = forms.IntegerField(label="Hit Points")
-        # pp = forms.IntegerField(label="Passive Perception")
-        # str = forms.IntegerField(label="Strenght", max_value=22)
-        # dex = forms.IntegerField(label="Dexterity", max_value=22)
-        # con = forms.IntegerField(label="Constitution", max_value=22)
-        # int = forms.IntegerField(label="Intelligence", max_value=22)
-        # wis = forms.IntegerField(label="Wisdom", max_value=22)
-        # cha = forms.IntegerField(label="Charisma", max_value=22)
+class NewCharacter(ModelForm):
+    class Meta:
+        model = Character
+        fields = ['charname', 'playername', 'race', 'charclass', 'level', 'ca', 'hp', 'pp', 'str', 'dex', 'con', 'int', 'wis', 'cha'] 
+
 
 def load(request):
-    if "characters" not in request.session:
-        request.session["characters"] = []
-
-    return render(request, "character/load.html", {
-        "characters": request.session["characters"]
-    })
+    if request.method == "POST":
+        s
+    
+    else:
+        return render(request, "character/load.html", {
+            "characters": Character.objects.all()
+        })
 
 def save(request):
     if request.method == "POST":
         form = NewCharacter(request.POST)
         if form.is_valid():
-            character = form.cleaned_data["charname"]
-            request.session["characters"] += [character]
+            form.save()
             #aqui hay que meterlo en la base de datos
             return HttpResponseRedirect(reverse("character:load"))
 
