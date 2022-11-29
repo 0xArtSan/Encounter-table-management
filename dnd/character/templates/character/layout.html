@@ -17,12 +17,10 @@
                 <a href="/">Home</a>
                 <a href="{% url 'character:load' %}">Index</a>
                 <a href="{% url 'character:save' %}">Create</a>
-                <form action="load" method="get">
-                    <input id="charname" type="text" name="charname">
-                    <input type="submit">
+                <form>
+                    <input id="charname" type="search" name="charname">
+                    <input type="submit" value="Search character">
                 </form>
-
-                <!-- form/search bar that method post to load and search in the database for that word -->
             </div>
         </nav>
 

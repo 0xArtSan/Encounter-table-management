@@ -14,20 +14,19 @@ class NewCharacter(ModelForm):
         fields = ['charname', 'playername', 'race', 'charclass', 'level', 'ca', 'hp', 'pp', 'str', 'dex', 'con', 'int', 'wis', 'cha'] 
 
 
-def index(request):
-        return render(request, "character/load.html", {
-            "characters": Character.objects.all()
-        })
-
-def load(request, charname):
-    # Arreglar esta funcion para que al darle a buscar te ponga .../load/charname y te cargue su ficha
-    charname = charname(request.POST)
-    if charname.is_valid():
-        character = Character.objects.get(charname=charname)
+def load(request):
+    # Arreglar esta funcion para que al darle a buscar te ponga .../load/"charname" y te cargue su ficha
+    # En pos de avanzar, lo voy a hacer en post y no va a salir en la url
+    if 'charname' in request.GET:
+        charname = request.GET['charname']
+        data = Character.objects.filter(charname__icontains=charname)
         # echar un error en caso de que no exista
-        return render(request, "character/loaded.hmtl", {
-            "character": character
-        })
+    else:
+        data = Character.objects.all()
+    context = {
+        'character' : data 
+    }
+    return render(request, "character/load.html", context)
 
 
 

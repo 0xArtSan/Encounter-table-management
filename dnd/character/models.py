@@ -18,4 +18,4 @@ class Character(models.Model):
         cha = models.IntegerField(default=0)
         
         def __str__(self):
-            return f"{self.charname} ({self.playername}) {self.race} {self.charclass} ({self.level}) -- CA:{self.ca}, HP:{self.hp}, PP:{self.pp} -- Str:{self.str} Dex:{self.dex} Con:{self.con} Int:{self.int} Wis:{self.wis} Cha:{self.cha}"
+            return self.charname

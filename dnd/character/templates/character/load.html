@@ -1,22 +1,42 @@
 {% extends "character/layout.html" %}
-
-
 {% block title %}
     Load
 {% endblock %}
-
 {% block main %}
-
-    <ul>
-        {% for character in characters %}
-
-            <li>{{ character }}</li>
-
-        {% empty %}
-
-            <li>No Players/Playable Characters</li>
-            
+<table>
+    <thead>
+        <tr>
+            <td>Character Name (Player Name)</td>
+            <td>Race</td>
+            <td>Class (Level)</td>
+            <td>CA</td>
+            <td>HP</td>
+            <td>PP</td>
+            <td>STR</td>
+            <td>DEX</td>
+            <td>CON</td>
+            <td>INT</td>
+            <td>WIS</td>
+            <td>CHA</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for character in character %}
+        <tr>
+            <td>{{ character.charname }} ({{ character.playername }})</td>
+            <td>{{ character.race }}</td>
+            <td>{{ character.charclass }} ({{ character.level }})</td>
+            <td>{{ character.ca }}</td>
+            <td>{{ character.hp }}</td>
+            <td>{{ character.pp }}</td>
+            <td>{{ character.str }}</td>
+            <td>{{ character.dex }}</td>
+            <td>{{ character.con }}</td>
+            <td>{{ character.int }}</td>
+            <td>{{ character.wis }}</td>
+            <td>{{ character.cha }}</td>
+        </tr>            
         {% endfor %}
-    </ul>
-    
+    </tbody>
+</table>
 {% endblock %}
