@@ -1,15 +1,17 @@
 {% extends "index/layout.html" %}
-
-
 {% block title %}
     Index
 {% endblock %}
-
 {% block main %}
-
     <ul>
-        <li><a href="/character">Character</a></li>
-        <li><a href="/monster">Monster</a></li>
-    </ul>
+        <il><a href="/">Home</a></il>
 
+        <il><a href="{% url 'character:load' %}">Character</a></il>
+
+        <il><a href="{% url 'monster:loadmon' %}">Monster</a></il>
+
+        <il><a href="{% url 'rte:loadrte' %}">Encounter Tables</a></il>
+
+        <il><a href="{% url 'encounter:indexenc' %}">Combat</a></il>
+    </ul>
 {% endblock %}

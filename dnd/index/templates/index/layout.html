@@ -4,22 +4,21 @@
 
 <html lang="en">
     <head>
-        <link href="{% static 'dnd/styles.css' %}" rel="stylesheet">
-
         <title>{% block title %}{% endblock %}</title>
-
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     </head>
 
     <body>
-
         <nav>
             <div>
                 <a href="/">Home</a>
                 <a href="{% url 'character:load' %}">Character</a>
                 <a href="{% url 'monster:loadmon' %}">Monster</a>
+                <a href="{% url 'rte:loadrte' %}">Encounter Tables</a>
+                <a href="{% url 'encounter:indexenc' %}">Combat</a>
+                <a href="/admin">Admin</a>
             </div>
         </nav>
-
 
         <main>
             {% block main %}{% endblock %}
