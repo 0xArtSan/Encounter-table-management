@@ -1,13 +1,10 @@
 {% extends "character/layout.html" %}
-
-
 {% block title %}
-    Save
+    Save Character
 {% endblock %}
-
 {% block main %}
 
-    <h1>Save</h1>
+    <h1>Save Character</h1>
 
     <form action="{% url 'character:save' %}" method="post">
         {% csrf_token %}

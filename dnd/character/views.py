@@ -5,9 +5,6 @@ from django.urls import reverse
 from .models import Character
 from django.forms import ModelForm
 
-class NameForm(forms.Form):
-    charname = forms.CharField(label='Character Name', max_length=64)
-
 class NewCharacter(ModelForm):
     class Meta:
         model = Character
@@ -35,7 +32,7 @@ def save(request):
         form = NewCharacter(request.POST)
         if form.is_valid():
             form.save()
-            #aqui hay que meterlo en la base de datos
+            #aqui hay que meterlo en la base de datos -- hecho
             return HttpResponseRedirect(reverse("character:load"))
 
         else:

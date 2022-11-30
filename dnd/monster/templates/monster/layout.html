@@ -16,7 +16,12 @@
             <div>
                 <a href="/">Home</a>
                 <a href="{% url 'character:load' %}">Character</a>
-                <a href="{% url 'monster:loadmon' %}">Monster</a>
+                <a href="{% url 'monster:loadmon' %}">Index</a>
+                <a href="{% url 'monster:savemon' %}">Create</a>
+                <form>
+                    <input id="moname" type="search" name="moname">
+                    <input type="submit" value="Search monster">
+                </form>
             </div>
         </nav>
 
