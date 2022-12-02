@@ -5,6 +5,6 @@ from . import views
 app_name = "rte"
 
 urlpatterns = [
-    path("save", views.saverte, name="saverte"),
+    path("save/", views.saverte, name="saverte"),
     path("", views.loadrte, name="loadrte")
 ]

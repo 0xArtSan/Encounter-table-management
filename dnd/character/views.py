@@ -12,12 +12,12 @@ class NewCharacter(ModelForm):
 
 
 def load(request):
-    # Arreglar esta funcion para que al darle a buscar te ponga .../load/"charname" y te cargue su ficha
-    # En pos de avanzar, lo voy a hacer en post y no va a salir en la url
+    # Arreglar esta funcion para que al darle a buscar te ponga .../load/"charname" y te cargue su ficha -- hecho
     if 'charname' in request.GET:
         charname = request.GET['charname']
         data = Character.objects.filter(charname__icontains=charname)
         # echar un error en caso de que no exista
+        # añadir buscar por playername y por charname de forma indistinta en el mismo form
     else:
         data = Character.objects.all()
     context = {
