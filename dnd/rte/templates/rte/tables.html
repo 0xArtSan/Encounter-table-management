@@ -3,23 +3,7 @@
     Create Tables
 {% endblock %}
 {% block main %}
-<form>
-    <input id="row" type="text">
-</form>
-<button onClick="addInput()">add rows</button>
-<form id ='articleForm'>
-    <input id="textInput" type="textarea"></input>
-</form>
 
-
-
-<script>
-    const getArticleForm = document.getElementById("articleForm");
-
-    function addInput() {
-        getArticleForm.appendChild(document.createElement('input'));
-        }
-</script>
 
 
 {% endblock %}

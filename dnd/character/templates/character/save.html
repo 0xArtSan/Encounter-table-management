@@ -3,13 +3,11 @@
     Save Character
 {% endblock %}
 {% block main %}
+<h1>Save Character</h1>
 
-    <h1>Save Character</h1>
-
-    <form action="{% url 'character:save' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Save character">
-    </form>
-
+<form action="{% url 'character:save' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save character">
+</form>
 {% endblock %}

@@ -4,8 +4,27 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.forms import ModelForm
 
+class Rows(forms.Form):
+    rows = forms.IntegerField(label='Number of rows')
 
 # save f(x)
+def table(request):
+    numrows = 1
+    if request.method == "POST":
+        nrows = Rows(request.POST)
+        if nrows.is_valid():
+            context = {'rows': nrows, 'range': range(0, nrows)}
+            return render(request, "rte/table.html", context)
+        else:
+            #no se como hacer esto, quiero que haga tantas cosas como numero sea pero no tengo ni idea
+            context = {'rows': nrows, 'range': range(0, numrows)}
+            return render(request, 'rte/table.html', context)  
+
+    return render(request, "rte/table.html", {
+        'rows': Rows, 'range': range(0, numrows)
+        })
+
+
 def saverte(request):
     if request.method == "POST":
         return render(request, "rte/tables.html") 
