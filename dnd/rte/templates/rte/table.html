@@ -11,27 +11,58 @@
     <input type="submit" value="Create table">
 </form>
 
-<form>
+<form action="{% url 'rte:saverte' %}" method="post">
+    {% csrf_token %}
     <input type="text" value="Encounter table name">
+    <input name="nod" type="number">
+    <select name="dsize">
+        <option name="0">None</option>
+        <option name="d4">d4</option>
+        <option name="d6">d6</option>
+        <option name="d8">d8</option>
+        <option name="d10">d10</option>
+        <option name="d12">d12</option>
+        <option name="d20">d20</option>
+    </select>
     <table>
         <thead>
             <tr>
                 <td>#</td>
-                <td>Qty</td>
+                <td>Number of monsters</td>
                 <td>Monster</td>
             </tr>
         </thead>
         <tbody>
             {% for x in range %}
-            <tr>
-                <td>pene 1</td>
-                <td>peen 2</td>
-                <td>pene 3</td>
+            <tr value="{{ forloop.counter }}">
+                <td>
+                    {{ forloop.counter }}
+                </td>
+
+                <td>
+                    <input name="nod" type="number">
+                    <select name="dsize">
+                        <option name="0">None</option>
+                        <option name="d4">d4</option>
+                        <option name="d6">d6</option>
+                        <option name="d8">d8</option>
+                        <option name="d10">d10</option>
+                        <option name="d12">d12</option>
+                        <option name="d20">d20</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select name="item_id">
+                    {% for monster in monsters %}
+                        <option name="monster" value="{{ monster.moname }}">{{ monster.moname }}</option>
+                    {% endfor %}
+                    </select>
+                </td>   
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <input type="submit" value="Save table">
 </form>
-
 {% endblock %}

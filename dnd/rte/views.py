@@ -3,33 +3,35 @@ from django.http import HttpResponseRedirect, request
 from django.shortcuts import render
 from django.urls import reverse
 from django.forms import ModelForm
+from monster.models import Monster
 
 class Rows(forms.Form):
     rows = forms.IntegerField(label='Number of rows')
 
-# save f(x)
+# create table f(x)
 def table(request):
     numrows = 1
+    monsters = Monster.objects.all()
     if request.method == "POST":
-        nrows = Rows(request.POST)
+        nrows = Rows(data=request.POST)
         if nrows.is_valid():
-            context = {'rows': nrows, 'range': range(0, nrows)}
+            xrows = nrows.cleaned_data.get("rows")
+
+            context = {'rows': nrows, 'range': range(0, xrows), 'monsters': monsters}
             return render(request, "rte/table.html", context)
         else:
-            #no se como hacer esto, quiero que haga tantas cosas como numero sea pero no tengo ni idea
-            context = {'rows': nrows, 'range': range(0, numrows)}
+            #no se como hacer esto, quiero que haga tantas cosas como numero sea pero no tengo ni idea -- hecho
+            context = {'rows': nrows, 'range': range(0, numrows), 'monsters': monsters}
             return render(request, 'rte/table.html', context)  
 
     return render(request, "rte/table.html", {
-        'rows': Rows, 'range': range(0, numrows)
-        })
+        'rows': Rows, 'range': range(0, numrows), 'monsters': monsters})
 
-
+# save table f(x)
 def saverte(request):
     if request.method == "POST":
         return render(request, "rte/tables.html") 
 
-    return render(request, "rte/tables.html") 
 
 # Crear tabla de encuentros
 # rte  = random table encounter
