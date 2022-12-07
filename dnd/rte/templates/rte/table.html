@@ -3,28 +3,13 @@
     Create Tables
 {% endblock %}
 {% block main %}
-<h1>How many rows?</h1>
+
+<h1>Create a table of 18 slots</h1>
 
 <form action="{% url 'rte:table' %}" method="post">
     {% csrf_token %}
-    {{ rows }}
-    <input type="submit" value="Create table">
-</form>
-
-<form action="{% url 'rte:saverte' %}" method="post">
-    {% csrf_token %}
-    <input type="text" value="Encounter table name">
-    <input name="nod" type="number">
-    <select name="dsize">
-        <option name="0">None</option>
-        <option name="d4">d4</option>
-        <option name="d6">d6</option>
-        <option name="d8">d8</option>
-        <option name="d10">d10</option>
-        <option name="d12">d12</option>
-        <option name="d20">d20</option>
-    </select>
     <table>
+        <input type="text" placeholder="Name your encounter table" name="tablename">
         <thead>
             <tr>
                 <td>#</td>
@@ -33,36 +18,29 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in range %}
-            <tr value="{{ forloop.counter }}">
+        {% for number in range %}
+            <tr>
                 <td>
-                    {{ forloop.counter }}
+                   {{ forloop.counter }} 
                 </td>
 
                 <td>
-                    <input name="nod" type="number">
-                    <select name="dsize">
-                        <option name="0">None</option>
-                        <option name="d4">d4</option>
-                        <option name="d6">d6</option>
-                        <option name="d8">d8</option>
-                        <option name="d10">d10</option>
-                        <option name="d12">d12</option>
-                        <option name="d20">d20</option>
-                    </select>
-                </td>
-
-                <td>
-                    <select name="item_id">
-                    {% for monster in monsters %}
-                        <option name="monster" value="{{ monster.moname }}">{{ monster.moname }}</option>
+                    <input type="number" min="1" max="5" value="1" name="nod{{ forloop.counter }}">
+                    <select name="dice{{ forloop.counter }}">
+                    {% for dice in dices %}
+                        <option value="{{ dice }}">{{ dice }}</option>
                     {% endfor %}
-                    </select>
-                </td>   
+                </td>
+
+                <td>
+                    <select name="monster{{ forloop.counter }}" type="text">
+                    {% for monster in monsters %}
+                        <option value="{{ monster.id }}">{{ monster.moname }}</option>
+                    {% endfor %}
+                </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
-    </table>
-    <input type="submit" value="Save table">
+        <input type="submit">
 </form>
 {% endblock %}

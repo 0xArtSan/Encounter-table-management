@@ -2,30 +2,46 @@ from django import forms
 from django.http import HttpResponseRedirect, request
 from django.shortcuts import render
 from django.urls import reverse
-from django.forms import ModelForm
+from django.forms import ModelForm, formset_factory
 from monster.models import Monster
+from .models import RTE
 
-class Rows(forms.Form):
-    rows = forms.IntegerField(label='Number of rows')
-
+DICE_CHOICE = ['None', 'd4', 'd6', 'd8', 'd10', 'd12']
 # create table f(x)
 def table(request):
-    numrows = 1
-    monsters = Monster.objects.all()
+    rows = range(1,18)
     if request.method == "POST":
-        nrows = Rows(data=request.POST)
-        if nrows.is_valid():
-            xrows = nrows.cleaned_data.get("rows")
+        # tengo que recuperar la info y guardarla en la db
+        tablename = request.POST.get('tablename')
 
-            context = {'rows': nrows, 'range': range(0, xrows), 'monsters': monsters}
-            return render(request, "rte/table.html", context)
-        else:
-            #no se como hacer esto, quiero que haga tantas cosas como numero sea pero no tengo ni idea -- hecho
-            context = {'rows': nrows, 'range': range(0, numrows), 'monsters': monsters}
-            return render(request, 'rte/table.html', context)  
+        fintab = [tablename]
 
-    return render(request, "rte/table.html", {
-        'rows': Rows, 'range': range(0, numrows), 'monsters': monsters})
+        for info in rows:
+            numd = 'nod' + str(info)
+            typed = 'dice' + str(info)
+            monsd = 'monster' + str(info)
+            nod = request.POST.get(numd)
+            dice = request.POST.get(typed)
+            monster = request.POST.get(monsd)
+            if dice == 'None':
+                apinfo = nod + monster
+            else:
+                apinfo = nod + dice + monster
+
+            fintab.append(apinfo)
+        context = {
+            'prueba': fintab
+            }
+        return render(request, "rte/prueba.html", context)
+
+
+    monsterlist = Monster.objects.all()
+    context = {
+        'range': rows,
+        'monsters': monsterlist,
+        'dices': DICE_CHOICE
+    }
+    return render(request, "rte/table.html", context)
 
 # save table f(x)
 def saverte(request):
