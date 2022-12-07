@@ -4,7 +4,12 @@
 {% endblock %}
 {% block main %}
 {% for table in tables %}
-<div>{{ table.tablename }}</div>
-<div>{{ table.tablemons }}</div>
+<table>
+    <tbody>
+    {% for monster in table %}   
+        <tr><td>{{ monster }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endfor %}
 {% endblock %}

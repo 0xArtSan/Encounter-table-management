@@ -52,11 +52,23 @@ def table(request):
 # save table f(x)
 
 def loadrte(request):
-    tables = RTE.objects.all()
+    finaltables = []
+    tables = RTE.objects.values_list('tablemons')
+    # tratar el texto que sale para que sea tratable por el template
+    for table in tables:
+        xtable = table[0].replace("['", "").replace("']", "").split("', '")
+
+        finaltables.append(xtable)
+    for list in tables:
+        for monster in list:
+            monster = monster
+            # para cada mostro quiero hacer una variable que quite el #d## y los espacios para que solo quede el numero
+            # de id buscarlo en la db y sustituir la variable anterior por el nombre del mostro
+
     context = {
-        'tables': tables
+        'tables': finaltables
     }
-    return render(request, "rte/index.html") 
+    return render(request, "rte/index.html", context) 
     
 # usar la tabla f(x) 
 
