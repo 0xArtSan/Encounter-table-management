@@ -3,5 +3,8 @@
     Index Tables
 {% endblock %}
 {% block main %}
-    <p>pollas 2</p>
+{% for table in tables %}
+<div>{{ table.tablename }}</div>
+<div>{{ table.tablemons }}</div>
+{% endfor %}
 {% endblock %}

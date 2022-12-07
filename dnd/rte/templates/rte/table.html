@@ -5,7 +5,7 @@
 {% block main %}
 
 <h1>Create a table of 18 slots</h1>
-
+<h2>{{ failure }}</h2>
 <form action="{% url 'rte:table' %}" method="post">
     {% csrf_token %}
     <table>
