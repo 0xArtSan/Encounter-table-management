@@ -11,11 +11,8 @@ DICE_CHOICE = ['None', 'd4', 'd6', 'd8', 'd10', 'd12']
 def table(request):
     rows = range(1,18)
     if request.method == "POST":
-        # tengo que recuperar la info y guardarla en la db
         tablename = request.POST.get('tablename')
-
         fintab = [tablename]
-
         for info in rows:
             numd = 'nod' + str(info)
             typed = 'dice' + str(info)
@@ -24,15 +21,16 @@ def table(request):
             dice = request.POST.get(typed)
             monster = request.POST.get(monsd)
             if dice == 'None':
-                apinfo = nod + monster
+                apinfo = nod + ' ' + monster
             else:
-                apinfo = nod + dice + monster
+                apinfo = nod + dice + ' ' + monster
 
             fintab.append(apinfo)
-        context = {
-            'prueba': fintab
-            }
-        return render(request, "rte/prueba.html", context)
+        
+        rte = RTE(tablename=fintab[0], tablemons=fintab)
+        rte.save()
+        prueba = RTE.objects.all()
+        return render(request, "rte/tables.html")
 
 
     monsterlist = Monster.objects.all()
@@ -49,16 +47,6 @@ def saverte(request):
         return render(request, "rte/tables.html") 
 
 
-# Crear tabla de encuentros
-# rte  = random table encounter
-# random 1-8 + 1-12 = position in rte
-# dropdown de monstruos de la db
-# por casilla numero entero o dado o dado + numero entero
-# guardar en diccionario de diccionarios?
-# tabla1 = {
-#   {numero: X o 1d6, moname: 'bicho'}
-# }
-# no se como guardar la info: quiza en un texto largo y al sacarlo interpretarlo
 
 def loadrte(request):
     return render(request, "rte/index.html") 

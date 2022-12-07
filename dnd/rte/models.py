@@ -5,5 +5,8 @@ from monster.models import Monster
 
 # Create your models here.
 class RTE(models.Model):
-    tablename = models.CharField(max_length=100, default="nameyourtables")
+    tablename = models.CharField(max_length=100)
     tablemons = models.TextField()
+
+    def __str__(self):
+        return self.tablename
