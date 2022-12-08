@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.forms import ModelForm, formset_factory
 from monster.models import Monster
 from .models import RTE
+from random import randint
 
 DICE_CHOICE = ['None', 'd4', 'd6', 'd8', 'd10', 'd12']
 # create table f(x)
@@ -55,9 +56,26 @@ def loadrte(request):
     finaltables = []
     tables = RTE.objects.values_list('tablemons')
     # tratar el texto que sale para que sea tratable por el template
+    listmon(finaltables, tables)
+
+    context = {
+        'tables': finaltables
+    }
+    return render(request, "rte/index.html", context) 
+    
+# iniciativa 
+def prepcomb(request):
+    if request.method == "POST":
+        calcmon = []
+        table = request.POST.get('table')
+        listmon(calcmon, table)
+        return render(request, "rte/prepcomb.html")
+
+
+
+def listmon(finaltables, tables):
     for table in tables:
         xtable = table[0].replace("['", "").replace("']", "").split("', '")
-
         finaltables.append(xtable)
     
     for table in finaltables:
@@ -66,19 +84,14 @@ def loadrte(request):
             mondb = monster.rsplit(None, 1)[-1]
             monshow = Monster.objects.get(pk=int(mondb))
             if Monster.objects.get(pk=int(mondb)):
-                monster = monster.split(None, 1)[0] + monshow.moname
+                monster = monster.split(None, 1)[0] + ' ' + monshow.moname
                 table[i] = monster
             i = i + 1
 
-    context = {
-        'tables': finaltables
-    }
-    return render(request, "rte/index.html", context) 
-    
-# usar la tabla f(x) 
 
-# seleccionar tabla y que calcule el dado
-#
+# calcular que mostro y cuantos y que calcule el iniciativa de mostros y pida iniciativa de jugadores
+# quiza con un formulario de pjs activos?
+
 # con el dado puedo hacer una funcion recursiva
 # pillas el numero de dados
 # def rte(y, x)
@@ -87,5 +100,3 @@ def loadrte(request):
 #   else:
 #       return randomnumber between 1 and x
 # algo asi
-# 
-# con el resultado sacame el monstruo/monstruos y llevalos a encounter

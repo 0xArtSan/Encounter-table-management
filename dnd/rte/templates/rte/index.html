@@ -4,16 +4,17 @@
 {% endblock %}
 {% block main %}
 {% for table in tables %}
-<form action="{% url 'encounter:combat' %}" method="post">
+<form action="{% url 'rte:prepcomb' %}" method="post">
 {% csrf_token %}
-        <table>
+        <table >
             <tbody>
             {% for monster in table %}
                 <tr><td>{{ monster }}</td></tr>
             {% endfor %}
             </tbody>
         </table>
-    <input type="submit">
+    
+    <button type="submit" id="{{ table.0 }}" name="table">Combat!</button>
 </form>
 {% endfor %}
 {% endblock %}

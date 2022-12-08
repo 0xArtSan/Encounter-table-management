@@ -6,5 +6,6 @@ app_name = "rte"
 
 urlpatterns = [
     path("save/", views.table, name="table"),
-    path("", views.loadrte, name="loadrte")
+    path("", views.loadrte, name="loadrte"),
+    path("initiative", views.prepcomb, name="prepcomb")
 ]
