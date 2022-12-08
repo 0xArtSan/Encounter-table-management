@@ -59,11 +59,16 @@ def loadrte(request):
         xtable = table[0].replace("['", "").replace("']", "").split("', '")
 
         finaltables.append(xtable)
-    for list in tables:
-        for monster in list:
-            monster = monster
-            # para cada mostro quiero hacer una variable que quite el #d## y los espacios para que solo quede el numero
-            # de id buscarlo en la db y sustituir la variable anterior por el nombre del mostro
+    
+    for table in finaltables:
+        i = 1
+        for monster in table[1:]:
+            mondb = monster.rsplit(None, 1)[-1]
+            monshow = Monster.objects.get(pk=int(mondb))
+            if Monster.objects.get(pk=int(mondb)):
+                monster = monster.split(None, 1)[0] + monshow.moname
+                table[i] = monster
+            i = i + 1
 
     context = {
         'tables': finaltables

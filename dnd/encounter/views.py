@@ -6,8 +6,8 @@ from django.forms import ModelForm
 
 
 # Create your views here.
-def combat():
-    s
+def combat(request):
+    return render(request, "encounter/combat.html")
 
 def save():
     s
