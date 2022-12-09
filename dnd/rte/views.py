@@ -77,14 +77,14 @@ def loadrte(request):
 def prepcomb(request):
     if request.method == "POST":
         table = request.POST.get('table')
-        tables = RTE.objects.filter(tablename=table).values_list('tablemons')
+        tablemons = RTE.objects.filter(tablename=table).values_list('tablemons')
         # no se por que no me pasa bien la lista de mostros
-        #listmon(tables)
+        listmon(tablemons)
 
         #calcdicemon = []
         #chomon(calcdicemon, calclist)
 
-        context = {'enemies': tables, 'table': table}
+        context = {'enemies': tablemons, 'table': table}
         return render(request, "rte/prepcomb.html", context)
 
 

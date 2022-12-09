@@ -3,18 +3,45 @@
     Index Tables
 {% endblock %}
 {% block main %}
-{% for table in tables %}
+
 <form action="{% url 'rte:prepcomb' %}" method="post">
 {% csrf_token %}
-        <table >
-            <tbody>
-            {% for monster in table %}
-                <tr><td>{{ monster }}</td></tr>
+<h1>CHOOSE YOUR TABLE</h1>
+<table>
+    <thead>
+        <tr><th>
+        <select name="table" id="table" type="text">
+            <option>Choose a table</option>
+            {% for table in tables %}
+            <option value="{{ forloop.counter }}">{{ table.0 }}</option>
             {% endfor %}
-            </tbody>
-        </table>
-    
-    <button type="submit" id="{{ table.0 }}" name="table">Combat!</button>
+        </th></tr>
+    </thead>
+</table>    
+<button type="submit">Combat!</button>
 </form>
+
+<div id="0" style="display: block"></div>
+{% for table in tables %}
+<div class="table hidden" id="{{ forloop.counter }}" style="display: none">
+    <ul>
+    {% for item in table %}
+        <il>{{ item }}</il>
+    {% endfor %}
+    </ul>
+</div>
 {% endfor %}
+
+<script>
+    document.getElementById('table').onchange = function() {
+        var i = 1;
+        var myDiv = document.getElementById(i);
+        while(myDiv) {
+            myDiv.style.display = 'none';
+            myDiv = document.getElementById(++i);
+        }
+        document.getElementById(this.value).style.display = 'block';
+    };
+</script>
+
 {% endblock %}
