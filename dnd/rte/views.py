@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.forms import ModelForm, formset_factory
 from monster.models import Monster
 from .models import RTE
-from random import randint
+import random
 
 DICE_CHOICE = ['None', 'd4', 'd6', 'd8', 'd10', 'd12']
 # create table f(x)
@@ -66,12 +66,32 @@ def loadrte(request):
 # iniciativa 
 def prepcomb(request):
     if request.method == "POST":
-        calcmon = []
+        calclist = []
         table = request.POST.get('table')
-        listmon(calcmon, table)
-        return render(request, "rte/prepcomb.html")
+        tables = RTE.objects.filter(tablename=table).values_list('tablemons')
+        # no se por que no me pasa bien la lista de mostros
+        listmon(calclist, tables)
+
+        #calcdicemon = []
+        #chomon(calcdicemon, calclist)
+
+        context = {'enemies': calclist, 'table': table}
+        return render(request, "rte/prepcomb.html", context)
 
 
+def chomon(emptylist, list):
+    tabledice = random.randint(1, 10) + random.randint(0, 7)
+    item = list[tabledice]
+    mon = item.rsplit(None, 1)[-1]
+    emptylist.append(mon)
+
+    mondice = item.split(None, 1)[0]
+    if 'd' in mondice:
+        xdice = mondice.split('d', 1)
+        dice = int(xdice[0]) * random.randint(1, int(xdice[1]))
+        emptylist.append(dice)
+    else:
+        emptylist.append(mondice)
 
 def listmon(finaltables, tables):
     for table in tables:
