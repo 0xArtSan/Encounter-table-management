@@ -53,11 +53,21 @@ def table(request):
 # save table f(x)
 
 def loadrte(request):
+    # tengo una lista vacia
     finaltables = []
+    # saco una lista con las listas de los mostros de la db, las cuales tienen 1 elemento
     tables = RTE.objects.values_list('tablemons')
-    # tratar el texto que sale para que sea tratable por el template
-    listmon(finaltables, tables)
-
+    # para cada una de esas listas:
+    for table in tables:
+        # les quito los dos primeros y ultimos caracteres y hago una lista con cada uno de los elementos (por cada "', '")
+        xtable = table[0].replace("['", "").replace("']", "").split("', '")
+        # la lista creada la añado a la lista que se enviara al html
+        finaltables.append(xtable)
+    # para cada tabla en la tabla que se enviara
+    for list in finaltables:
+        # esto deberia sustituir la id del mostro por el nombre del mostro
+        listmon(list)
+# tratar el texto que sale para que sea tratable por el template
     context = {
         'tables': finaltables
     }
@@ -66,16 +76,15 @@ def loadrte(request):
 # iniciativa 
 def prepcomb(request):
     if request.method == "POST":
-        calclist = []
         table = request.POST.get('table')
         tables = RTE.objects.filter(tablename=table).values_list('tablemons')
         # no se por que no me pasa bien la lista de mostros
-        listmon(calclist, tables)
+        #listmon(tables)
 
         #calcdicemon = []
         #chomon(calcdicemon, calclist)
 
-        context = {'enemies': calclist, 'table': table}
+        context = {'enemies': tables, 'table': table}
         return render(request, "rte/prepcomb.html", context)
 
 
@@ -93,20 +102,20 @@ def chomon(emptylist, list):
     else:
         emptylist.append(mondice)
 
-def listmon(finaltables, tables):
-    for table in tables:
-        xtable = table[0].replace("['", "").replace("']", "").split("', '")
-        finaltables.append(xtable)
-    
-    for table in finaltables:
-        i = 1
-        for monster in table[1:]:
-            mondb = monster.rsplit(None, 1)[-1]
-            monshow = Monster.objects.get(pk=int(mondb))
-            if Monster.objects.get(pk=int(mondb)):
-                monster = monster.split(None, 1)[0] + ' ' + monshow.moname
-                table[i] = monster
-            i = i + 1
+def listmon(list):    
+    i = 1
+    # para cada item de la lista que le han pasado empezando por el segundo item
+    for monster in list[1:]:
+        # esto saca el ultimom item, es decir la id del mostro
+        mondb = monster.rsplit(None, 1)[-1]
+        # esto busca el mostro que coincide con dicha id
+        monshow = Monster.objects.get(pk=int(mondb))
+        # en el caso de encontrar un mostro con esa id
+        if Monster.objects.get(pk=int(mondb)):
+            # esto convierte el item de la lista en #d## # en #d## moname
+            monster = monster.split(None, 1)[0] + ' ' + monshow.moname
+            list[i] = monster
+        i = i + 1
 
 
 # calcular que mostro y cuantos y que calcule el iniciativa de mostros y pida iniciativa de jugadores
