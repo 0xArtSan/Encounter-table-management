@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.forms import ModelForm
 from monster.models import Monster
 from character.models import Character
-
+import random
 
 # Create your views here.
 def combat(request):
@@ -14,28 +14,36 @@ def combat(request):
 
         # precesa la info del enemigo y envia todo el statblock de vuelta
         noe = request.POST.get('numenemy')
+        enerange = range(0, int(noe))
 
-        enerange = range(1, int(noe))
+        enemies = []
         enemy = request.POST.get('typenemy')
-        monster = Monster.objects.get(moname=enemy)
+        monster = Monster.objects.filter(moname=enemy).values()
+        dex = monster[0]["dex"]
+        for enemy in enerange:
+            enin = random.randint(1, 20) + dex
+            en = monster[0]
+            en["ini"] = enin
+            enemies.append(en)
 
         # procesa la info de jugadores y envia todos los statblock
-        players = Character.objects.all()
-        dex = Character.objects.values_list('dex', flat=True)
-        nop = len(dex)
+        players = Character.objects.values()
+        nop = len(players)
         initiative = []
         for times in range(1, nop + 1):
             x = request.POST.get('ini' + str(times))
-            y = dex[times-1]
-            z = int(x) + y
-            initiative.append(z)
+            initiative.append(x)
+        counter = 0
+        for player in players:
+            player["ini"] = initiative[counter]
+            counter = counter + 1
 
         context = {
             'noe': enerange, 
-            'enemy': monster, 
+            'enemies': enemies, 
             'initiative': initiative, 
             'players': players,
-            
+            'prueba': 'pene'
             }
         return render(request, "encounter/combat.html", context)
     return render(request, "rte/index.html")

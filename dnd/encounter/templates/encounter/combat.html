@@ -1,27 +1,145 @@
 {% extends "index/layout.html" %}
 {% block title %}
-    Create Tables
+    Combat!
 {% endblock %}
 {% block main %}
+<p><button data-col="10" id="hide">Sort Combatants by Ini</button></p>
+<p><button style="visibility:hidden;" id="show" onclick="upward()">Next Turn</button></p>
 
-<p>NOE {{ noe }}</p>
-<p>ENEMY {{ enemy }}</p>
-{% for stat in enemy %}
-{{ stat }}
-{% endfor %}
-<p>INITIATIVE {{ initiative }}</p>
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>CA</th>
+        <th>HP</th>
+        <th>STR</th>
+        <th>DEX</th>
+        <th>CON</th>
+        <th>INT</th>
+        <th>WIS</th>
+        <th>CHA</th>
+        <th hidden>Ini</th>
+    </tr>
+    </thead>
+    
+    <tbody id="table">
+    {% for enemy in enemies %}
+    <tr>
+        <td>ENEMY</td>
+        <td>{{ enemy.moname }}({{ forloop.counter }})</td>
+        <td>{{ enemy.ca }}</td>
+        <td><input type="number" value="{{ enemy.hp }}" name="{{ enemy.charname }}"> / {{ enemy.hp }}</td> / {{ enemy.hp }}</td>
+        <td>{{ enemy.str }}</td>
+        <td>{{ enemy.dex }}</td>
+        <td>{{ enemy.con }}</td>
+        <td>{{ enemy.int }}</td>
+        <td>{{ enemy.wis }}</td>
+        <td>{{ enemy.cha }}</td>
+        <td hidden>{{ enemy.ini }}</td>
+    </tr>
+    {% endfor %}
+    {% for player in players %}
+    <tr>
+        <td>FRIEND</td>
+        <td>{{ player.charname }}</td>
+        <td>{{ player.ca }}</td>
+        <td><input type="number" value="{{ player.hp }}"> / {{ player.hp }}</td>
+        <td>{{ player.str }}</td>
+        <td>{{ player.dex }}</td>
+        <td>{{ player.con }}</td>
+        <td>{{ player.int }}</td>
+        <td>{{ player.wis }}</td>
+        <td>{{ player.cha }}</td>
+        <td hidden>{{ player.ini }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-{% for player in players %}
-<p>{{ player.charname }}</p>
-<p>{{ player.ca }}</p>
-<p>{{ player.hp }}</p>
-<p>{{ player.str }}</p>
-<p>{{ player.dex }}</p>
-<p>{{ player.con }}</p>
-<p>{{ player.int }}</p>
-<p>{{ player.wis }}</p>
-<p>{{ player.cha }}</p>
-{% endfor %}
+
+<table>
+    <tr>
+        <td>Monster type: {{ enemies.0.montype }} |</td>
+        <td>CR: {{ enemies.0.cr }} |</td>
+        <td>DRS: {{ enemies.0.drs }} |</td>
+        <td>Speed: {{ enemies.0.speed }} |</td> 
+        <td>PP: {{ enemies.0.pp }}</td>
+    </tr>
+    <tr><td>Skills</td></tr>
+    <tr>
+        <td>{{ enemies.0.skill_1 }}</td>
+    </tr>
+    <tr>
+        <td>{{ enemies.0.skill_2 }}</td>
+    </tr>
+    <tr>
+        <td>{{ enemies.0.skill_3 }}</td>
+    </tr>
+    <tr><td>Actions</td></tr>
+    <tr>
+        <td>{{ enemies.0.action_1 }}</td>
+    </tr>
+    <tr>
+        <td>{{ enemies.0.action_2 }}</td>
+    </tr>
+    <tr>
+        <td>{{ enemies.0.action_3 }}</td> 
+    </tr>
+    <tr>
+        <td>Spells: {{ enemies.0.spells }}</td>
+    </tr>
+</table>
+
+<table>
+    {% for player in players %}
+    <tr>
+        <td>{{ player.charname }}</td>
+        <td>({{ player.ini }})</td>
+        <td><input type="number" value="{{ player.hp }}" name="{{ player.charname }}"> / {{ player.hp }}</td>
+    </tr>
+    {% endfor %}
+    {% for enemy in enemies %}
+    <tr>
+        <td>{{ enemy.moname }}({{ forloop.counter }})</td>
+        <td>({{ enemy.ini }})</td>
+        <td><input type="number" value="{{ enemy.hp }}" name="{{ enemy.moname }}"> / {{ enemy.hp }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 <p>PRUEBA {{ prueba }}</p>
 
+<script>
+const input = document.querySelector('input');
+const log = document.getElementById('log');
+
+input.addEventListener('change', updateValue);
+
+function updateValue(e) {
+  log.textContent = e.target.value;
+}
+
+const tb=document.getElementById("table"),
+  trs=[...tb.children];
+
+document.body.onclick=ev=>{
+ let col= ev.target.dataset?.col;
+ if(col){
+  trs.sort((a,b)=>b.children[col].textContent-a.children[col].textContent);
+  trs.forEach(tr=>tb.append(tr));
+ }
+document.getElementById('hide').style.visibility='hidden';
+document.getElementById('show').style.visibility='visible';
+}
+
+function upward() {
+  var table = document.getElementsByTagName('table');
+  var table = table[0];
+  var rows = table.getElementsByTagName('tr');
+  var shifted = rows[1];
+  rows[1].parentNode.removeChild(rows[1]);
+  table.appendChild(shifted);
+}
+</script>
 {% endblock %}
