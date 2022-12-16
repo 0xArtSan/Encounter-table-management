@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.forms import ModelForm, formset_factory
 from monster.models import Monster
+from character.models import Character
 from .models import RTE
 import random
 
 DICE_CHOICE = ['None', 'd4', 'd6', 'd8', 'd10', 'd12']
 # create table f(x)
 def table(request):
-    rows = range(1,18)
+    rows = range(1, 19)
     monsterlist = Monster.objects.all()
     if request.method == "POST":
         tablename = request.POST.get('tablename')
@@ -76,15 +77,20 @@ def loadrte(request):
 # iniciativa 
 def prepcomb(request):
     if request.method == "POST":
-        table = request.POST.get('table')
-        tablemons = RTE.objects.filter(tablename=table).values_list('tablemons')
-        # no se por que no me pasa bien la lista de mostros
+        
+        table = request.POST.get('table')   
+        stable = int(table) - 1
+        tablemons = RTE.objects.values_list('tablemons')[stable]
+        tablemons = tablemons[0].replace("['", "").replace("']", "").split("', '")
+        
         listmon(tablemons)
 
-        #calcdicemon = []
-        #chomon(calcdicemon, calclist)
+        calcdicemon = []
+        chomon(calcdicemon, tablemons)
 
-        context = {'enemies': tablemons, 'table': table}
+        chars = Character.objects.values_list('charname')
+
+        context = {'enemies': calcdicemon, 'characters': chars}
         return render(request, "rte/prepcomb.html", context)
 
 

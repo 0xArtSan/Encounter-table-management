@@ -4,6 +4,24 @@
 {% endblock %}
 {% block main %}
 
-pene
+<p>NOE {{ noe }}</p>
+<p>ENEMY {{ enemy }}</p>
+{% for stat in enemy %}
+{{ stat }}
+{% endfor %}
+<p>INITIATIVE {{ initiative }}</p>
+
+{% for player in players %}
+<p>{{ player.charname }}</p>
+<p>{{ player.ca }}</p>
+<p>{{ player.hp }}</p>
+<p>{{ player.str }}</p>
+<p>{{ player.dex }}</p>
+<p>{{ player.con }}</p>
+<p>{{ player.int }}</p>
+<p>{{ player.wis }}</p>
+<p>{{ player.cha }}</p>
+{% endfor %}
+<p>PRUEBA {{ prueba }}</p>
 
 {% endblock %}

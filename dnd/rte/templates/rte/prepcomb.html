@@ -4,10 +4,22 @@
 {% endblock %}
 {% block main %}
 
-{{ table }}
-{% for item in enemies %}
-<p>
-{{ item }}
-</p>
-{% endfor %}
+<p>You are going to fight: {{ enemies.1 }} {{ enemies.0 }}</p>
+
+<form action="{% url 'encounter:combat' %}" method="post">
+    {% csrf_token %}
+    <label for="noe">Nº of enemies</label>
+    <input type="number" name="numenemy" value="{{ enemies.1 }}">
+    <label for="typenemy">Enemy Type</label>
+    <input type="text" name="typenemy" value="{{ enemies.0 }}" readonly>
+
+    <div>
+        {% for character in characters %}
+        {{ character.0 }}
+        <input type="number" name="ini{{ forloop.counter }}">
+        {% endfor %}
+    </div>
+    <input type="submit">
+</form>
+
 {% endblock %}
