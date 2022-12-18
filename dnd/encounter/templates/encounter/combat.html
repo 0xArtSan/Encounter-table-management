@@ -24,36 +24,38 @@
     </thead>
     
     <tbody id="table">
-    {% for enemy in enemies %}
-    <tr>
-        <td>ENEMY</td>
-        <td>{{ enemy.moname }}({{ forloop.counter }})</td>
-        <td>{{ enemy.ca }}</td>
-        <td><input type="number" value="{{ enemy.hp }}" name="{{ enemy.charname }}"> / {{ enemy.hp }}</td> / {{ enemy.hp }}</td>
-        <td>{{ enemy.str }}</td>
-        <td>{{ enemy.dex }}</td>
-        <td>{{ enemy.con }}</td>
-        <td>{{ enemy.int }}</td>
-        <td>{{ enemy.wis }}</td>
-        <td>{{ enemy.cha }}</td>
-        <td hidden>{{ enemy.ini }}</td>
-    </tr>
-    {% endfor %}
-    {% for player in players %}
-    <tr>
-        <td>FRIEND</td>
-        <td>{{ player.charname }}</td>
-        <td>{{ player.ca }}</td>
-        <td><input type="number" value="{{ player.hp }}"> / {{ player.hp }}</td>
-        <td>{{ player.str }}</td>
-        <td>{{ player.dex }}</td>
-        <td>{{ player.con }}</td>
-        <td>{{ player.int }}</td>
-        <td>{{ player.wis }}</td>
-        <td>{{ player.cha }}</td>
-        <td hidden>{{ player.ini }}</td>
-    </tr>
-    {% endfor %}
+        {% for enemy in enemies %}
+        <tr>
+            <td>ENEMY</td>
+            <td>{{ enemy.moname }}({{ forloop.counter }})</td>
+            <td>{{ enemy.ca }}</td>
+            <td><input type="number" id="{{ enemy.moname }}#{{ forloop.counter }}" /> / {{ enemy.hp }}</td>
+            <td>{{ enemy.str }}</td>
+            <td>{{ enemy.dex }}</td>
+            <td>{{ enemy.con }}</td>
+            <td>{{ enemy.int }}</td>
+            <td>{{ enemy.wis }}</td>
+            <td>{{ enemy.cha }}</td>
+            <td hidden>{{ enemy.ini }}</td>
+            <td><input type="button" value="Delete Row" onclick="SomeDeleteRowFunction(this)"></td>
+        </tr>
+        {% endfor %}
+        {% for player in players %}
+        <tr>
+            <td>FRIEND</td>
+            <td>{{ player.charname }}</td>
+            <td>{{ player.ca }}</td>
+            <td><input type="number" id="{{ player.charname }}" /> / {{ player.hp }}</td>
+            <td>{{ player.str }}</td>
+            <td>{{ player.dex }}</td>
+            <td>{{ player.con }}</td>
+            <td>{{ player.int }}</td>
+            <td>{{ player.wis }}</td>
+            <td>{{ player.cha }}</td>
+            <td hidden>{{ player.ini }}</td>
+            <td><input type="button" value="Delete Row" onclick="SomeDeleteRowFunction(this)"></td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
@@ -91,34 +93,7 @@
     </tr>
 </table>
 
-<table>
-    {% for player in players %}
-    <tr>
-        <td>{{ player.charname }}</td>
-        <td>({{ player.ini }})</td>
-        <td><input type="number" value="{{ player.hp }}" name="{{ player.charname }}"> / {{ player.hp }}</td>
-    </tr>
-    {% endfor %}
-    {% for enemy in enemies %}
-    <tr>
-        <td>{{ enemy.moname }}({{ forloop.counter }})</td>
-        <td>({{ enemy.ini }})</td>
-        <td><input type="number" value="{{ enemy.hp }}" name="{{ enemy.moname }}"> / {{ enemy.hp }}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<p>PRUEBA {{ prueba }}</p>
-
 <script>
-const input = document.querySelector('input');
-const log = document.getElementById('log');
-
-input.addEventListener('change', updateValue);
-
-function updateValue(e) {
-  log.textContent = e.target.value;
-}
 
 const tb=document.getElementById("table"),
   trs=[...tb.children];
@@ -141,5 +116,11 @@ function upward() {
   rows[1].parentNode.removeChild(rows[1]);
   table.appendChild(shifted);
 }
+
+function SomeDeleteRowFunction(o) {
+     var p=o.parentNode.parentNode;
+         p.parentNode.removeChild(p);
+    }
 </script>
+
 {% endblock %}
