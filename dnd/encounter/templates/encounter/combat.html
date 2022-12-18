@@ -29,7 +29,7 @@
             <td>ENEMY</td>
             <td>{{ enemy.moname }}({{ forloop.counter }})</td>
             <td>{{ enemy.ca }}</td>
-            <td><input type="number" id="{{ enemy.moname }}#{{ forloop.counter }}" /> / {{ enemy.hp }}</td>
+            <td><input type="number" id="{{ enemy.moname }}#{{ forloop.counter }}" value="{{ enemy.hp }}" /> / {{ enemy.hp }}</td>
             <td>{{ enemy.str }}</td>
             <td>{{ enemy.dex }}</td>
             <td>{{ enemy.con }}</td>
@@ -45,7 +45,7 @@
             <td>FRIEND</td>
             <td>{{ player.charname }}</td>
             <td>{{ player.ca }}</td>
-            <td><input type="number" id="{{ player.charname }}" /> / {{ player.hp }}</td>
+            <td><input type="number" id="{{ player.charname }}" value="{{ player.hp }}" /> / {{ player.hp }}</td>
             <td>{{ player.str }}</td>
             <td>{{ player.dex }}</td>
             <td>{{ player.con }}</td>
