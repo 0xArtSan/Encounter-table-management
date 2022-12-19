@@ -4,36 +4,36 @@
 {% endblock %}
 {% block main %}
 
-<h1>Create a table of 18 slots</h1>
-<h2>{{ failure }}</h2>
-<form action="{% url 'rte:table' %}" method="post">
+<h1 class="text-center bg-light bg-opacity-25">Create a table of 18 slots</h1>
+<h2 class="text-center bg-light bg-opacity-25">{{ failure }}</h2>
+
+<form class="text-center" action="{% url 'rte:table' %}" method="post">
     {% csrf_token %}
-    <table>
-        <input type="text" placeholder="Name your encounter table" name="tablename">
+    <table class="table table-hover table-responsive">
         <thead>
             <tr>
-                <td>#</td>
-                <td>Number of monsters</td>
-                <td>Monster</td>
+                <th scope="col">#</th>
+                <th scope="col">Number of monsters</th>
+                <th scope="col">Monster</th>
             </tr>
         </thead>
         <tbody>
         {% for number in range %}
-            <tr>
+            <tr class="table-dark">
                 <td>
                    {{ forloop.counter }} 
                 </td>
 
                 <td>
                     <input type="number" min="1" max="5" value="1" name="nod{{ forloop.counter }}">
-                    <select name="dice{{ forloop.counter }}">
+                    <select class="bg-secondary" name="dice{{ forloop.counter }}">
                     {% for dice in dices %}
                         <option value="{{ dice }}">{{ dice }}</option>
                     {% endfor %}
                 </td>
 
                 <td>
-                    <select name="monster{{ forloop.counter }}" type="text">
+                    <select class="bg-secondary" name="monster{{ forloop.counter }}" type="text">
                     {% for monster in monsters %}
                         <option value="{{ monster.id }}">{{ monster.moname }}</option>
                     {% endfor %}
@@ -41,6 +41,7 @@
             </tr>
         {% endfor %}
         </tbody>
-        <input type="submit">
+        <input type="text" placeholder="Name your encounter table" name="tablename">
+        <input value="Create" type="submit">
 </form>
 {% endblock %}
