@@ -3,11 +3,12 @@
     Load Character
 {% endblock %}
 {% block main %}
+<div class="table-responsive">
 <table class="table table-hover table-responsive">
     <thead>
         <tr>
             <th scope="col">Character Name (Player Name)</th>
-            <th scope="col">Race</th>
+            <th scope="col">Ancestry</th>
             <th scope="col">Class (Level)</th>
             <th scope="col">CA</th>
             <th scope="col">HP</th>
@@ -39,5 +40,6 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 <a href="{% url 'character:save' %}" class="btn btn-primary bg-dark bg-opacity-50">Add New Character</a>
 {% endblock %}

@@ -27,13 +27,13 @@
                     <img style="width: 350px; height: auto;" src="{% static 'monster.jpg' %}" class="card-img-top" alt="Strahd">
                   
                     <div class="card-body bg-light bg-opacity-25">
-                        <h5 class="card-title">List of Monster</h5>
-                        <p class="card-text">In this section you can see a list of all monster and their respective stats in the database.</p>
+                        <h5 class="card-title">List of Monsters</h5>
+                        <p class="card-text">In this section you can see a list of all monsters and their respective stats in the database.</p>
                         <a href="{% url 'monster:loadmon' %}" class="btn btn-primary bg-dark bg-opacity-50">Monster</a>
                     </div>
                     <div class="card-body bg-light bg-opacity-25">
                         <h5 class="card-title">Create Monster</h5>
-                        <p class="card-text">Here you can create monsters so you can then create your own encounter tables.</p>
+                        <p class="card-text">Here you can create monsters so you can add them later to encounter tables.</p>
                         <a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark bg-opacity-50">Create Monster</a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="card-body bg-light bg-opacity-25">
                         <h5 class="card-title">Create New Character</h5>
-                        <p class="card-text">Here you can create new character so you can access their info in the combat UI.</p>
+                        <p class="card-text">Here you can create new characters so you can access their info in the combat UI.</p>
                         <a href="{% url 'character:save' %}" class="btn btn-primary bg-dark bg-opacity-50">Save Char</a>
                     </div>
                 </div>

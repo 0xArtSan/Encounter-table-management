@@ -3,57 +3,56 @@
     Load Monster
 {% endblock %}
 {% block main %}
-<table>
+<a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark bg-opacity-50">Add New Monster</a>
+<div class="table-responsive">
+<table class="table table-hover table-responsive">
     <thead>
         <tr>
-            <td>Monster Name</td>
-            <td>Type and Size</td>
-            <td>CR</td>
-            <td>CA</td>
-            <td>HP</td>
-            <td>DRS</td>
-            <td>SPEED</td>
-            <td>STR</td>
-            <td>DEX</td>
-            <td>CON</td>
-            <td>INT</td>
-            <td>WIS</td>
-            <td>CHA</td>
-            <td>PP</td>
-            <td>SKILL 1</td>
-            <td>SKILL 2</td>
-            <td>SKILL 3</td>
-            <td>ACTION 1</td>
-            <td>ACTION 2</td>
-            <td>ACTION 3</td>
-            <td>SPELLS</td>
+            <th scope="col">Monster Name</th>
+            <th scope="col">Type and Size</th>
+            <th scope="col">CR</th>
+            <th scope="col">CA</th>
+            <th scope="col">HP</th>
+            <th scope="col">DRS</th>
+            <th scope="col">SPEED</th>
+            <th scope="col">STR</th>
+            <th scope="col">DEX</th>
+            <th scope="col">CON</th>
+            <th scope="col">INT</th>
+            <th scope="col">WIS</th>
+            <th scope="col">CHA</th>
+            <th scope="col">PP</th>
         </tr>
     </thead>
 
     <tbody>
         {% for monster in monsters %}
-        <tr>
-            <td>{{ monster.moname }}</td>
-            <td>{{ monster.montype }}</td>
-            <td>{{ monster.cr }}</td>
-            <td>{{ monster.ca }}</td>
-            <td>{{ monster.hp }}</td>
-            <td>{{ monster.drs }}</td>
-            <td>{{ monster.speed }}</td>
-            <td>{{ monster.str }}</td>
-            <td>{{ monster.dex }}</td>
-            <td>{{ monster.con }}</td>
-            <td>{{ monster.int }}</td>
-            <td>{{ monster.wis }}</td>
-            <td>{{ monster.cha }}</td>
-            <td>{{ monster.pp }}</td>
-            <td>{{ monster.skill_1 }}</td>
-            <td>{{ monster.skill_2 }}</td>
-            <td>{{ monster.skill_3 }}</td>
-            <td>{{ monster.action_1 }}</td>
-            <td>{{ monster.action_2 }}</td>
-            <td>{{ monster.action_3 }}</td>
-            <td>{{ monster.spells }}</td>
+        <tr class="border border-light">
+            <tr class="table-dark">
+                <td>{{ monster.moname }}</td>
+                <td>{{ monster.montype }}</td>
+                <td>{{ monster.cr }}</td>
+                <td>{{ monster.ca }}</td>
+                <td>{{ monster.hp }}</td>
+                <td>{{ monster.drs }}</td>
+                <td>{{ monster.speed }}</td>
+                <td>{{ monster.str }}</td>
+                <td>{{ monster.dex }}</td>
+                <td>{{ monster.con }}</td>
+                <td>{{ monster.int }}</td>
+                <td>{{ monster.wis }}</td>
+                <td>{{ monster.cha }}</td>
+                <td>{{ monster.pp }}</td>
+            </tr>
+            <tr class="table-dark">
+                <td>{{ monster.skill_1 }}</td>
+                <td>{{ monster.skill_2 }}</td>
+                <td>{{ monster.skill_3 }}</td>
+                <td>{{ monster.action_1 }}</td>
+                <td>{{ monster.action_2 }}</td>
+                <td>{{ monster.action_3 }}</td>
+                <td>{{ monster.spells }}</td>
+            </tr>
         </tr>
         {% empty %}
         <tr>
@@ -62,4 +61,6 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
+<a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark bg-opacity-50">Add New Monster</a>
 {% endblock %}

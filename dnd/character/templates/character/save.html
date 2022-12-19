@@ -8,25 +8,25 @@
 
 <form action="{% url 'character:save' %}" method="post">
     {% csrf_token %}
-    <div class="row">
-        <div class="col"><label class="form-label">Player name:</label>{{ form.playername }}</div>
-        <div class="col">Character name: {{ form.charname }}</div>
-        <div class="col">Ancestry: {{ form.race }}</div>
-        <div class="col">Class: {{ form.charclass }}</div>
-        <div class="col">Level: {{ form.level }}</div>
+    <div class="row border">
+        <div class="col-2 border border-secondary">Player: {{ form.playername }}</div>
+        <div class="col-2 border border-secondary">Character: {{ form.charname }}</div>
+        <div class="col-2 border border-secondary">Ancestry: {{ form.race }}</div>
+        <div class="col-2 border border-secondary">Class: {{ form.charclass }}</div>
+        <div class="col-2 border border-secondary">Level: {{ form.level }}</div>
     </div>
-    <div class="row">
-        <div class="col">Armor Class: {{ form.ca }}</div>
-        <div class="col">Hit Points: {{ form.hp }}</div>
-        <div class="col">Passive Perception: {{ form.pp }}</div>
+    <div class="row border">
+        <div class="col-2 border border-secondary">Armor Class: {{ form.ca }}</div>
+        <div class="col-2 border border-secondary">Hit Points: {{ form.hp }}</div>
+        <div class="col-2 border border-secondary">Passive Perception: {{ form.pp }}</div>
     </div>
-    <div class="row">
-        <div class="col">Strength: {{ form.str }}</div>
-        <div class="col">Dexterity: {{ form.dex }}</div>
-        <div class="col">Constitution: {{ form.con }}</div>
-        <div class="col">Intelligence: {{ form.int }}</div>
-        <div class="col">Wisdom: {{ form.wis }}</div>
-        <div class="col">Charisma: {{ form.cha }}</div>
+    <div class="row border">
+        <div class="col-2 border border-secondary">Strength: {{ form.str }}</div>
+        <div class="col-2 border border-secondary">Dexterity: {{ form.dex }}</div>
+        <div class="col-2 border border-secondary">Constitution: {{ form.con }}</div>
+        <div class="col-2 border border-secondary">Intelligence: {{ form.int }}</div>
+        <div class="col-2 border border-secondary">Wisdom: {{ form.wis }}</div>
+        <div class="col-2 border border-secondary">Charisma: {{ form.cha }}</div>
     </div>
     <input class="btn btn-primary bg-dark bg-opacity-50" type="submit" value="Save character">
 </form>
