@@ -3,78 +3,77 @@
     Index
 {% endblock %}
 {% block main %}
+{% load static %}
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
+                    <img style="width: 350px; height: auto;" src="{% static 'rte.jpg' %}" class="card-img-top" alt="Xanathar">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">Encounter Tables</h5>
-                      <p class="card-text">Here you can select a Random Table of monsters, roll initiative and start combat right away.</p>
-                      <a href="{% url 'rte:loadrte' %}" class="btn btn-primary bg-dark">Random table encounters</a>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">Encounter Tables</h5>
+                        <p class="card-text">Here you can select a Random Table of monsters and  start combat.</p>
+                        <a href="{% url 'rte:loadrte' %}" class="btn btn-primary bg-dark bg-opacity-50">Random table encounters</a>
+                    </div>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">Create New Random Table Encounter</h5>
+                        <p class="card-text">Here you can create your own random encounter tables.</p>
+                        <a href="{% url 'rte:table' %}" class="btn btn-primary bg-dark bg-opacity-50">Create table</a>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
+                    <img style="width: 350px; height: auto;" src="{% static 'monster.jpg' %}" class="card-img-top" alt="Strahd">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">List of Monster</h5>
-                      <p class="card-text">Here you can see a list of all monster in the database.</p>
-                      <a href="{% url 'monster:loadmon' %}" class="btn btn-primary bg-dark">Monster</a>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">List of Monster</h5>
+                        <p class="card-text">In this section you can see a list of all monster and their respective stats in the database.</p>
+                        <a href="{% url 'monster:loadmon' %}" class="btn btn-primary bg-dark bg-opacity-50">Monster</a>
+                    </div>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">Create Monster</h5>
+                        <p class="card-text">Here you can create monsters so you can then create your own encounter tables.</p>
+                        <a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark bg-opacity-50">Create Monster</a>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
+                    <img style="width: 350px; height: auto;" src="{% static 'character.jpg' %}" class="card-img-top" alt="Ajani">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">List of characters</h5>
-                      <p class="card-text">Here you can see your players' characters stats.</p>
-                      <a href="{% url 'character:load' %}" class="btn btn-primary bg-dark">Character</a>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">List of characters</h5>
+                        <p class="card-text">Here you can see your players' characters stats.</p>
+                        <a href="{% url 'character:load' %}" class="btn btn-primary bg-dark bg-opacity-50">Character</a>
+                    </div>
+                    <div class="card-body bg-light bg-opacity-25">
+                        <h5 class="card-title">Create New Character</h5>
+                        <p class="card-text">Here you can create new character so you can access their info in the combat UI.</p>
+                        <a href="{% url 'character:save' %}" class="btn btn-primary bg-dark bg-opacity-50">Save Char</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">Create New Random Table Encounter</h5>
-                      <p class="card-text">Here you can create your own random encounter tables.</p>
-                      <a href="{% url 'rte:table' %}" class="btn btn-primary bg-dark">Create table</a>
-                    </div>
+
                 </div>
             </div>
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">Create New Character</h5>
-                      <p class="card-text">Here you can create new character so you can access it in the combat UI.</p>
-                      <a href="{% url 'character:save' %}" class="btn btn-primary bg-dark">Save Char</a>
-                    </div>
+
                 </div>
             </div>
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card bg-dark bg-opacity-25">
                   
-                    <div class="card-body">
-                      <h5 class="card-title">Create Monster</h5>
-                      <p class="card-text">Here you can create monsters so you can then create your own encounter tables.</p>
-                      <a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark">Create Monster</a>
-                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-      
-      
+    </div>      
 {% endblock %}
