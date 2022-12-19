@@ -3,35 +3,28 @@
     Index Tables
 {% endblock %}
 {% block main %}
-
-<form action="{% url 'rte:prepcomb' %}" method="post">
-{% csrf_token %}
-<h1>CHOOSE YOUR TABLE</h1>
-<table>
-    <thead>
-        <tr><th>
-        <select name="table" id="table" type="text">
-            <option>Choose a table</option>
-            {% for table in tables %}
-            <option value="{{ forloop.counter }}">{{ table.0 }}</option>
-            {% endfor %}
-        </th></tr>
-    </thead>
-</table>    
-<button type="submit">Combat!</button>
+<h1 class="text-center bg-light bg-opacity-25">CHOOSE YOUR TABLE</h1>
+<form class="text-center" action="{% url 'rte:prepcomb' %}" method="post">
+    {% csrf_token %}
+    <select class="bg-secondary" name="table" id="table" type="text">
+        <option>Choose a table</option>
+        {% for table in tables %}
+        <option value="{{ forloop.counter }}">{{ table.0 }}</option>
+        {% endfor %}
+    </select>
+    <button class="bg-dark bg-opacity-25" type="submit">Combat!</button>
 </form>
 
-<div id="0" style="display: block"></div>
-{% for table in tables %}
-<div class="table hidden" id="{{ forloop.counter }}" style="display: none">
-    <ul>
-    {% for item in table %}
-        <il>{{ item }}</il>
+<div class="container container-fluid text-opacity-50">
+    <div class="" id="0" style="display: block"></div>
+    {% for table in tables %}
+    <div class="hidden" id="{{ forloop.counter }}" style="display: none">
+        {% for item in table %}
+            <div class="text-center">{{ item }}</div>
+        {% endfor %}
+    </div>
     {% endfor %}
-    </ul>
 </div>
-{% endfor %}
-
 <script>
     document.getElementById('table').onchange = function() {
         var i = 1;

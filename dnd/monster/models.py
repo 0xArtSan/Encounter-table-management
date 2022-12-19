@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Monster(models.Model):
-        moname = models.CharField(max_length=64, default="Art")
-        montype = models.CharField(max_length=25, default="Art")
+        moname = models.CharField(max_length=64, default="Monster")
+        montype = models.CharField(max_length=25, default="Medium Humanoid")
         cr = models.IntegerField(default=1)
         ca = models.IntegerField(default=10)
         hp = models.IntegerField(default=1)
@@ -16,13 +16,13 @@ class Monster(models.Model):
         wis = models.IntegerField(default=0)
         cha = models.IntegerField(default=0)
         pp = models.IntegerField(default=10)
-        skill_1 = models.CharField(max_length=250, default="ª")
-        skill_2 = models.CharField(max_length=250, default="ª")
-        skill_3 = models.CharField(max_length=250, default="ª")
-        action_1 = models.CharField(max_length=250, default="Attack 1")
-        action_2 = models.CharField(max_length=250, default="Attack 2")
-        action_3 = models.CharField(max_length=250, default="Attack 3")
-        spells = models.TextField(default="Mage Spell list")
+        skill_1 = models.CharField(max_length=250, default="None")
+        skill_2 = models.CharField(max_length=250, default="None")
+        skill_3 = models.CharField(max_length=250, default="None")
+        action_1 = models.CharField(max_length=250, default="None")
+        action_2 = models.CharField(max_length=250, default="None")
+        action_3 = models.CharField(max_length=250, default="None")
+        spells = models.TextField(default="None")
 
         def __str__(self):
             return self.moname

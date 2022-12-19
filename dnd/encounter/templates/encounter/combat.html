@@ -3,29 +3,32 @@
     Combat!
 {% endblock %}
 {% block main %}
-<p><button data-col="10" id="hide">Sort Combatants by Ini</button></p>
-<p><button style="visibility:hidden;" id="show" onclick="upward()">Next Turn</button></p>
+<div class="container">
+<p><button class="btn btn-primary bg-dark bg-opacity-50" data-col="10" id="hide">Sort Combatants by Ini</button></p>
+<p><button class="btn btn-primary bg-dark bg-opacity-50" style="visibility:hidden;" id="show" onclick="upward()">Next Turn</button></p>
+</div>
 
-<table>
+<div class="container">
+<table class="table table-hover table-responsive">
     <thead>
     <tr>
-        <th></th>
-        <th>Name</th>
-        <th>CA</th>
-        <th>HP</th>
-        <th>STR</th>
-        <th>DEX</th>
-        <th>CON</th>
-        <th>INT</th>
-        <th>WIS</th>
-        <th>CHA</th>
-        <th hidden>Ini</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">CA</th>
+        <th scope="col">HP</th>
+        <th scope="col">STR</th>
+        <th scope="col">DEX</th>
+        <th scope="col">CON</th>
+        <th scope="col">INT</th>
+        <th scope="col">WIS</th>
+        <th scope="col">CHA</th>
+        <th scope="col" hidden>Ini</th>
     </tr>
     </thead>
     
     <tbody id="table">
         {% for enemy in enemies %}
-        <tr>
+        <tr class="table-dark">
             <td>ENEMY</td>
             <td>{{ enemy.moname }}({{ forloop.counter }})</td>
             <td>{{ enemy.ca }}</td>
@@ -41,7 +44,7 @@
         </tr>
         {% endfor %}
         {% for player in players %}
-        <tr>
+        <tr class="table-dark">
             <td>FRIEND</td>
             <td>{{ player.charname }}</td>
             <td>{{ player.ca }}</td>
@@ -60,38 +63,52 @@
 </table>
 
 
-<table>
-    <tr>
+<table class="table">
+    <tr class="table-dark">
         <td>Monster type: {{ enemies.0.montype }} |</td>
         <td>CR: {{ enemies.0.cr }} |</td>
         <td>DRS: {{ enemies.0.drs }} |</td>
         <td>Speed: {{ enemies.0.speed }} |</td> 
         <td>PP: {{ enemies.0.pp }}</td>
     </tr>
-    <tr><td>Skills</td></tr>
-    <tr>
-        <td>{{ enemies.0.skill_1 }}</td>
-    </tr>
-    <tr>
-        <td>{{ enemies.0.skill_2 }}</td>
-    </tr>
-    <tr>
-        <td>{{ enemies.0.skill_3 }}</td>
-    </tr>
-    <tr><td>Actions</td></tr>
-    <tr>
-        <td>{{ enemies.0.action_1 }}</td>
-    </tr>
-    <tr>
-        <td>{{ enemies.0.action_2 }}</td>
-    </tr>
-    <tr>
-        <td>{{ enemies.0.action_3 }}</td> 
-    </tr>
-    <tr>
-        <td>Spells: {{ enemies.0.spells }}</td>
-    </tr>
 </table>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr class="bg-dark bg-opacity-50"><td>Skills</td></tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.skill_1 }}</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.skill_2 }}</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.skill_3 }}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="col">
+            <table class="table">
+                <tr class="bg-dark bg-opacity-50"><td>Actions</td></tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.action_1 }}</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.action_2 }}</td>
+                </tr>
+                <tr class="table-dark">
+                    <td>{{ enemies.0.action_3 }}</td> 
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table"><tr class="table-dark"><td>Spells: {{ enemies.0.spells }}</td></tr></table>
+        </div>
+    </div>
+</div>
 
 <script>
 

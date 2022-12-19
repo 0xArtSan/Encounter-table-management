@@ -5,7 +5,6 @@
 {% block main %}
 
 <h1 class="text-center bg-light bg-opacity-25">ADD NEW CHARACTER</h1>
-
 <form action="{% url 'character:save' %}" method="post">
     {% csrf_token %}
     <div class="row border">
@@ -15,12 +14,12 @@
         <div class="col-2 border border-secondary">Class: {{ form.charclass }}</div>
         <div class="col-2 border border-secondary">Level: {{ form.level }}</div>
     </div>
-    <div class="row border">
+    <div class="row border margin-left-6">
         <div class="col-2 border border-secondary">Armor Class: {{ form.ca }}</div>
         <div class="col-2 border border-secondary">Hit Points: {{ form.hp }}</div>
         <div class="col-2 border border-secondary">Passive Perception: {{ form.pp }}</div>
     </div>
-    <div class="row border">
+    <div class="row border margin-left-6">
         <div class="col-2 border border-secondary">Strength: {{ form.str }}</div>
         <div class="col-2 border border-secondary">Dexterity: {{ form.dex }}</div>
         <div class="col-2 border border-secondary">Constitution: {{ form.con }}</div>

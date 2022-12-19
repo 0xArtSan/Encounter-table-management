@@ -3,13 +3,41 @@
     Save Monster
 {% endblock %}
 {% block main %}
+    <h1 class="text-center bg-light bg-opacity-25">Save Monster</h1>
+<form action="{% url 'monster:savemon' %}" method="post">
+    {% csrf_token %}
+    <div class="row border">
+        <div class="col-2 border border-secondary">Name: {{ form.moname }}</div>
+        <div class="col-2 border border-secondary">Type: {{ form.montype }}</div>
+        <div class="col-2 border border-secondary">Challenge Rating: {{ form.cr }}</div>
+        <div class="col-2 border border-secondary">Passive Perception: {{ form.pp }}</div>
+    </div>
+    <div class="row border">
+        <div class="col-2 border border-secondary">Armor Class: {{ form.ca }}</div>
+        <div class="col-2 border border-secondary">Hit Points: {{ form.hp }}</div>
+        <div class="col-2 border border-secondary">Damage reduction: {{ form.drs }}</div>
+        <div class="col-2 border border-secondary">Speed: {{ form.speed }}</div>
+    </div>
+    <div class="row border">
+        <div class="col-2 border border-secondary">Strength: {{ form.str }}</div>
+        <div class="col-2 border border-secondary">Dexterity: {{ form.dex }}</div>
+        <div class="col-2 border border-secondary">Constitution: {{ form.con }}</div>
+        <div class="col-2 border border-secondary">Intelligence: {{ form.int }}</div>
+        <div class="col-2 border border-secondary">Wisdom: {{ form.wis }}</div>
+        <div class="col-2 border border-secondary">Charisma: {{ form.cha }}</div>
+    </div>
+    <div class="row border">
 
-    <h1>Save Monster</h1>
+        <div class="col-2 border border-secondary">Skill 1: {{ form.skill_1 }}</div>
+        <div class="col-2 border border-secondary">Skill 2: {{ form.skill_2 }}</div>
+        <div class="col-2 border border-secondary">Skill 3: {{ form.skill_3 }}</div>
 
-    <form action="{% url 'monster:savemon' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Save Monster">
-    </form>
+        <div class="col-2 border border-secondary">Action 1: {{ form.action_1 }}</div>
+        <div class="col-2 border border-secondary">Action 2: {{ form.action_2 }}</div>
+        <div class="col-2 border border-secondary">Action 3: {{ form.action_3 }}</div>
 
+        <div class="col-2 border border-secondary">Spells: {{ form.spells }}</div>
+    </div> 
+    <input type="submit" value="Save Monster">
+</form>
 {% endblock %}

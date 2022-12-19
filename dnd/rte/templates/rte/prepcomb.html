@@ -3,23 +3,30 @@
     Iniciative!!!
 {% endblock %}
 {% block main %}
+<h1 class="text-center bg-light bg-opacity-25">ROLL FOR INITIATIVE</h1>
+<div class="text-center py-3">You are going to fight: {{ enemies.1 }} {{ enemies.0 }}</div>
 
-<p>You are going to fight: {{ enemies.1 }} {{ enemies.0 }}</p>
+<div class="container py-3">
+    <form class="text-center" action="{% url 'encounter:combat' %}" method="post">
+        {% csrf_token %}
+        <div class="">
+            <label for="noe">Nº of enemies</label>
+            <input type="number" name="numenemy" value="{{ enemies.1 }}">
 
-<form action="{% url 'encounter:combat' %}" method="post">
-    {% csrf_token %}
-    <label for="noe">Nº of enemies</label>
-    <input type="number" name="numenemy" value="{{ enemies.1 }}">
-    <label for="typenemy">Enemy Type</label>
-    <input type="text" name="typenemy" value="{{ enemies.0 }}" readonly>
+            <label for="typenemy">Enemy Type</label>
+            <input type="text" name="typenemy" value="{{ enemies.0 }}" readonly>
+        </div>
 
-    <div>
-        {% for character in characters %}
-        {{ character.0 }}
-        <input type="number" name="ini{{ forloop.counter }}">
-        {% endfor %}
-    </div>
-    <input type="submit">
-</form>
+        <div class="py-3">
+            {% for character in characters %}
+            <div class="py-3">
+            {{ character.0 }}
+            <input type="number" name="ini{{ forloop.counter }}">
+            </div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Combat!">
+    </form>
+</div>
 
 {% endblock %}
