@@ -8,7 +8,8 @@ from django.forms import ModelForm
 class NewCharacter(ModelForm):
     class Meta:
         model = Character
-        fields = ['charname', 'playername', 'race', 'charclass', 'level', 'ca', 'hp', 'pp', 'str', 'dex', 'con', 'int', 'wis', 'cha'] 
+        fields = ['charname', 'playername', 'race', 'charclass', 'level', 'ca', 'hp', 'pp', 'str', 'dex', 'con', 'int', 'wis', 'cha']
+
 
 
 def load(request):

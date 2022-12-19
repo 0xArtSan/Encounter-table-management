@@ -3,26 +3,26 @@
     Load Character
 {% endblock %}
 {% block main %}
-<table>
+<table class="table table-hover table-responsive">
     <thead>
         <tr>
-            <td>Character Name (Player Name)</td>
-            <td>Race</td>
-            <td>Class (Level)</td>
-            <td>CA</td>
-            <td>HP</td>
-            <td>PP</td>
-            <td>STR</td>
-            <td>DEX</td>
-            <td>CON</td>
-            <td>INT</td>
-            <td>WIS</td>
-            <td>CHA</td>
+            <th scope="col">Character Name (Player Name)</th>
+            <th scope="col">Race</th>
+            <th scope="col">Class (Level)</th>
+            <th scope="col">CA</th>
+            <th scope="col">HP</th>
+            <th scope="col">PP</th>
+            <th scope="col">STR</th>
+            <th scope="col">DEX</th>
+            <th scope="col">CON</th>
+            <th scope="col">INT</th>
+            <th scope="col">WIS</th>
+            <th scope="col">CHA</th>
         </tr>
     </thead>
     <tbody>
         {% for character in character %}
-        <tr>
+        <tr class="table-dark">
             <td>{{ character.charname }} ({{ character.playername }})</td>
             <td>{{ character.race }}</td>
             <td>{{ character.charclass }} ({{ character.level }})</td>
@@ -39,4 +39,5 @@
         {% endfor %}
     </tbody>
 </table>
+<a href="{% url 'character:save' %}" class="btn btn-primary bg-dark bg-opacity-50">Add New Character</a>
 {% endblock %}

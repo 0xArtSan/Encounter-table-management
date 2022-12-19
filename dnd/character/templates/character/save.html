@@ -3,11 +3,31 @@
     Save Character
 {% endblock %}
 {% block main %}
-<h1>Save Character</h1>
+
+<h1 class="text-center bg-light bg-opacity-25">ADD NEW CHARACTER</h1>
 
 <form action="{% url 'character:save' %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Save character">
+    <div class="row">
+        <div class="col"><label class="form-label">Player name:</label>{{ form.playername }}</div>
+        <div class="col">Character name: {{ form.charname }}</div>
+        <div class="col">Ancestry: {{ form.race }}</div>
+        <div class="col">Class: {{ form.charclass }}</div>
+        <div class="col">Level: {{ form.level }}</div>
+    </div>
+    <div class="row">
+        <div class="col">Armor Class: {{ form.ca }}</div>
+        <div class="col">Hit Points: {{ form.hp }}</div>
+        <div class="col">Passive Perception: {{ form.pp }}</div>
+    </div>
+    <div class="row">
+        <div class="col">Strength: {{ form.str }}</div>
+        <div class="col">Dexterity: {{ form.dex }}</div>
+        <div class="col">Constitution: {{ form.con }}</div>
+        <div class="col">Intelligence: {{ form.int }}</div>
+        <div class="col">Wisdom: {{ form.wis }}</div>
+        <div class="col">Charisma: {{ form.cha }}</div>
+    </div>
+    <input class="btn btn-primary bg-dark bg-opacity-50" type="submit" value="Save character">
 </form>
 {% endblock %}
