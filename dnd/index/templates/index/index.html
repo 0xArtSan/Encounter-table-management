@@ -3,14 +3,78 @@
     Index
 {% endblock %}
 {% block main %}
-    <ul>
-        <il><a href="/">Home</a></il>
-
-        <il><a href="{% url 'character:load' %}">Character</a></il>
-
-        <il><a href="{% url 'monster:loadmon' %}">Monster</a></il>
-
-        <il><a href="{% url 'rte:loadrte' %}">Encounter Tables</a></il>
-
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">Encounter Tables</h5>
+                      <p class="card-text">Here you can select a Random Table of monsters, roll initiative and start combat right away.</p>
+                      <a href="{% url 'rte:loadrte' %}" class="btn btn-primary bg-dark">Random table encounters</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">List of Monster</h5>
+                      <p class="card-text">Here you can see a list of all monster in the database.</p>
+                      <a href="{% url 'monster:loadmon' %}" class="btn btn-primary bg-dark">Monster</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">List of characters</h5>
+                      <p class="card-text">Here you can see your players' characters stats.</p>
+                      <a href="{% url 'character:load' %}" class="btn btn-primary bg-dark">Character</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">Create New Random Table Encounter</h5>
+                      <p class="card-text">Here you can create your own random encounter tables.</p>
+                      <a href="{% url 'rte:table' %}" class="btn btn-primary bg-dark">Create table</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">Create New Character</h5>
+                      <p class="card-text">Here you can create new character so you can access it in the combat UI.</p>
+                      <a href="{% url 'character:save' %}" class="btn btn-primary bg-dark">Save Char</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                  
+                    <div class="card-body">
+                      <h5 class="card-title">Create Monster</h5>
+                      <p class="card-text">Here you can create monsters so you can then create your own encounter tables.</p>
+                      <a href="{% url 'monster:savemon' %}" class="btn btn-primary bg-dark">Create Monster</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+      
 {% endblock %}
