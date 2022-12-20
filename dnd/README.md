@@ -1,4 +1,4 @@
-# PROJECT TITLE
+# Encounter table management
 #### Video Demo: <>
 #### Description:
 
