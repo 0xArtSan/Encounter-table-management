@@ -1,5 +1,5 @@
 # Encounter table management
-#### Video Demo: <>
+#### Video Demo: <https://www.youtube.com/watch?v=exHsf3LGeHA>
 #### Description:
 
 I have always considered tracking initiative and turn order in table top roleplaying games tiresome, as well as flip through pages and pages in order to find the random table encounter I am looking for and then flip more pages in order to find the monster/monsters my players have to fight. In my app you are able to do all that with few clicks, after populate the database with all the required information that is!
